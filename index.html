@@ -1,0 +1,1010 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shirla Sin-Ling Tse — Architect</title>
+<meta name="description" content="Shirla Sin-Ling Tse — architect, researcher and educator. Principal Partner at AND lab Singapore. Aviation, retail and mixed-use architecture shaped by computation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..800&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+/* ---------------------------------------------------------------
+   Proportion system
+   φ = 1.618 · type scale steps of √φ (1.272) · 8px spatial unit
+   --------------------------------------------------------------- */
+:root{
+  color-scheme: light;
+  --paper:#ffffff;
+  --paper-2:#f7f7f8;
+  --ink:#0c0c0d;
+  --ink-2:#38383d;
+  --mute:#7a7a80;
+  --line:#e6e6ea;
+  --line-2:#cfcfd6;
+  --violet:#4b1d7a;
+  --violet-2:#6a35a3;
+  --violet-tint:#f4eff9;
+
+  --phi:1.618;
+  --t-0:12.6px;   /* 16 / 1.272 */
+  --t-1:16px;
+  --t-2:20.35px;
+  --t-3:25.9px;
+  --t-4:32.9px;
+  --t-5:41.9px;
+  --t-6:53.3px;
+
+  --u:8px;
+  --gutter:clamp(16px, 3.2vw, 40px);
+  --max:1440px;
+
+  --sans:"Archivo", ui-sans-serif, system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --serif:"Newsreader", Georgia, serif;
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:var(--sans);font-size:var(--t-1);line-height:1.618;
+  font-variation-settings:"wdth" 100;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+::selection{background:var(--violet);color:#fff}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:24px}
+.mono{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase}
+.v{color:var(--violet)}
+
+/* drafting-sheet column guides, very faint */
+.guides{position:fixed;inset:0;pointer-events:none;z-index:0}
+.guides .wrap{height:100%}
+.guides .grid{height:100%}
+.guides span{border-left:1px solid rgba(12,12,13,.028);height:100%}
+.guides span:last-child{border-right:1px solid rgba(12,12,13,.028)}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+.nav.solid{background:rgba(255,255,255,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-color:var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.mark{display:flex;align-items:center;gap:12px;font-weight:600;font-variation-settings:"wdth" 88;letter-spacing:.02em}
+.mark i{width:10px;height:10px;background:var(--violet);display:block}
+.nav ul{display:flex;gap:28px;list-style:none}
+.nav ul a{position:relative;color:var(--ink-2);transition:color .25s}
+.nav ul a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--violet);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.nav ul a:hover,.nav ul a.on{color:var(--ink)}
+.nav ul a.on::after,.nav ul a:hover::after{transform:scaleX(1)}
+@media (max-width:900px){.nav ul li.opt{display:none}.nav ul{gap:20px}}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;z-index:1}
+#field{position:absolute;inset:0;width:100%;height:100%;touch-action:pan-y}
+.hero .wrap{position:relative;width:100%;padding-bottom:clamp(40px,7vh,88px);padding-top:120px;pointer-events:none}
+.hero .wrap a{pointer-events:auto}
+.hero-kicker{display:flex;gap:16px;align-items:center;color:var(--ink-2);margin-bottom:clamp(20px,3vh,32px)}
+.hero-kicker b{width:40px;height:1px;background:var(--ink);display:block}
+.name{
+  font-weight:300;font-variation-settings:"wdth" 78;
+  font-size:clamp(54px,10.2vw,150px);line-height:.9;letter-spacing:-.035em;
+  grid-column:1 / span 8;
+}
+.name span{display:block}
+.name .sq{display:inline-block;width:.14em;height:.14em;background:var(--violet);margin-left:.06em;vertical-align:baseline}
+.hero-lede{grid-column:1 / span 5;margin-top:clamp(24px,4vh,40px);font-size:var(--t-2);line-height:1.5;color:var(--ink-2);max-width:30em}
+.hero-lede em{font-family:var(--serif);font-style:italic;font-size:1.12em;color:var(--ink)}
+.hero-meta{grid-column:1 / -1;margin-top:clamp(32px,6vh,64px);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;border-top:1px solid var(--ink);padding-top:16px}
+.hero-meta div{font-size:14px;line-height:1.45}
+.hero-meta .mono{display:block;color:var(--mute);margin-bottom:6px;font-size:10.5px}
+.fig{grid-column:9 / -1;align-self:end;justify-self:end;text-align:right;color:var(--mute);line-height:1.7}
+.fig strong{display:block;color:var(--ink);font-weight:500}
+.fig .bar{display:flex;gap:6px;justify-content:flex-end;margin-top:10px}
+.fig .bar i{width:22px;height:2px;background:var(--line-2);transition:background .4s}
+.fig .bar i.on{background:var(--violet)}
+@media (max-width:820px){
+  .hero{align-items:flex-end}
+  .name{grid-column:1/-1}
+  .hero-lede{grid-column:1/-1}
+  .hero-meta{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:20px}
+  .fig{grid-column:1/-1;justify-self:start;text-align:left;margin-top:24px}
+  .fig .bar{justify-content:flex-start}
+  .hero .wrap{padding-top:52vh}
+}
+
+/* ---------- sections ---------- */
+section{position:relative;z-index:1;scroll-margin-top:24px}
+.sec{padding:clamp(96px,12vw,168px) 0;border-top:1px solid var(--line)}
+.sec-head{margin-bottom:clamp(48px,7vw,96px);align-items:end}
+.sec-no{grid-column:1 / span 3;color:var(--violet);display:flex;flex-direction:column;gap:8px}
+.sec-no span:last-child{color:var(--mute)}
+.sec-title{grid-column:4 / -1;font-weight:300;font-variation-settings:"wdth" 82;font-size:clamp(34px,5.2vw,var(--t-6));line-height:1.04;letter-spacing:-.025em;max-width:16em}
+.sec-title em{font-family:var(--serif);font-style:italic;font-weight:300;letter-spacing:-.01em}
+@media (max-width:820px){.sec-no,.sec-title{grid-column:1/-1}.sec-no{flex-direction:row;gap:16px;margin-bottom:16px}}
+
+/* reveal */
+[data-r]{opacity:0;transform:translateY(24px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+[data-r].in{opacity:1;transform:none}
+.rule{height:1px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform 1.4s var(--ease)}
+.rule.in{transform:scaleX(1)}
+
+/* ---------- about ---------- */
+.about-portrait{grid-column:1 / span 4;position:relative}
+.frame{position:relative;padding:14px}
+.frame img{width:100%;aspect-ratio:1/1;object-fit:cover;filter:grayscale(1) contrast(1.06)}
+.crop{position:absolute;width:14px;height:14px;border-color:var(--ink);border-style:solid;border-width:0}
+.crop.tl{top:0;left:0;border-top-width:1px;border-left-width:1px}
+.crop.tr{top:0;right:0;border-top-width:1px;border-right-width:1px}
+.crop.bl{bottom:0;left:0;border-bottom-width:1px;border-left-width:1px}
+.crop.br{bottom:0;right:0;border-bottom-width:1px;border-right-width:1px}
+.dim{display:flex;align-items:center;gap:8px;color:var(--mute);margin-top:12px}
+.dim::before,.dim::after{content:"";flex:1;height:1px;background:var(--line-2)}
+.about-text{grid-column:6 / -1}
+.about-text p.big{font-size:clamp(22px,2.4vw,var(--t-4));line-height:1.36;font-weight:300;letter-spacing:-.012em;font-variation-settings:"wdth" 92}
+.about-text p.big b{font-weight:500}
+.about-text p.small{margin-top:32px;color:var(--ink-2);max-width:36em}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:56px;border-top:1px solid var(--line)}
+.stat{padding:20px 20px 0 0}
+.stat+.stat{padding-left:20px;border-left:1px solid var(--line)}
+.stat .n{font-size:clamp(40px,4.6vw,var(--t-6));font-weight:200;font-variation-settings:"wdth" 75;line-height:1;letter-spacing:-.03em}
+.stat .n sup{font-size:.36em;color:var(--violet);font-weight:500;vertical-align:top;margin-left:2px}
+.stat .mono{color:var(--mute);margin-top:10px;display:block;font-size:10.5px;line-height:1.5}
+@media (max-width:820px){.about-portrait{grid-column:2 / span 10;margin-bottom:48px}.about-text{grid-column:1/-1}.stats{grid-template-columns:1fr}.stat+.stat{border-left:0;padding-left:0;border-top:1px solid var(--line)}.stat{padding-bottom:16px}}
+
+/* ---------- approach diagram ---------- */
+.approach{grid-column:1/-1}
+.approach svg{width:100%;height:auto;display:block;overflow:visible}
+.approach text{font-family:var(--mono);font-size:13px;letter-spacing:.08em;fill:var(--ink)}
+.approach .big{font-family:var(--sans);font-size:44px;font-weight:300;letter-spacing:-.02em;font-variation-settings:"wdth" 80}
+.approach .ser{font-family:var(--serif);font-style:italic;font-size:22px;letter-spacing:0}
+.approach .draw{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);transition:stroke-dashoffset 2.4s var(--ease)}
+.approach.in .draw{stroke-dashoffset:0}
+.approach-cols{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:56px}
+.approach-cols h4{font-weight:500;font-size:var(--t-1);margin:10px 0 8px}
+.approach-cols p{color:var(--ink-2);font-size:15px}
+@media (max-width:820px){.approach-cols{grid-template-columns:1fr;gap:32px}}
+
+/* ---------- work ---------- */
+.filters{grid-column:4/-1;display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+@media (max-width:820px){.filters{grid-column:1/-1}}
+.chip{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line-2);background:transparent;color:var(--ink-2);padding:8px 14px;cursor:pointer;transition:all .25s}
+.chip:hover{border-color:var(--ink);color:var(--ink)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip sup{color:var(--violet-2);margin-left:4px}
+.chip.on sup{color:#c9b3e6}
+
+.work{padding:clamp(40px,5vw,72px) 0;border-top:1px solid var(--line);align-items:start;transition:opacity .5s}
+.work:first-of-type{border-top:0}
+.work.hide{display:none}
+.work-fig{grid-column:1 / span 7;position:relative;padding:12px;cursor:default}
+.work-fig .ph{position:relative;aspect-ratio:1.618/1;overflow:hidden;background:var(--paper-2)}
+.work-fig img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.04);transform:scale(1.02);transition:filter 1s var(--ease),transform 1.6s var(--ease)}
+.work-fig.contain img{object-fit:contain;padding:4%;background:#fff}
+.work:hover .work-fig img,.work.colour .work-fig img{filter:grayscale(0) contrast(1);transform:scale(1)}
+.work-fig .crop{transition:border-color .4s}
+.work:hover .work-fig .crop{border-color:var(--violet)}
+.work-fig figcaption{display:flex;justify-content:space-between;color:var(--mute);margin-top:12px}
+.work-body{grid-column:9 / -1;padding-top:12px}
+.work:nth-of-type(even) .work-fig{grid-column:6 / -1;order:2}
+.work:nth-of-type(even) .work-body{grid-column:1 / span 4;order:1}
+.work-no{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:10px;margin-bottom:20px}
+.work-no b{font-family:var(--mono);font-weight:500;color:var(--violet);font-size:12px;letter-spacing:.1em}
+.work h3{font-weight:400;font-variation-settings:"wdth" 84;font-size:clamp(26px,2.6vw,var(--t-4));line-height:1.1;letter-spacing:-.02em;margin-bottom:20px}
+.q{font-family:var(--serif);font-style:italic;font-weight:300;font-size:var(--t-2);line-height:1.42;margin-bottom:16px;position:relative;padding-left:18px}
+.q::before{content:"";position:absolute;left:0;top:.45em;bottom:.3em;width:2px;background:var(--violet)}
+.work-body p.d{color:var(--ink-2);font-size:15px}
+.spec{display:grid;grid-template-columns:auto 1fr;gap:6px 20px;margin-top:24px;padding-top:16px;border-top:1px solid var(--line);font-size:13.5px}
+.spec dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);padding-top:2px}
+@media (max-width:820px){
+  .work-fig,.work:nth-of-type(even) .work-fig{grid-column:1/-1;order:1;padding:8px}
+  .work-body,.work:nth-of-type(even) .work-body{grid-column:1/-1;order:2;padding-top:24px}
+}
+.also{margin-top:clamp(48px,6vw,80px);border-top:1px solid var(--ink);padding-top:20px}
+.also .mono{color:var(--mute);grid-column:1/span 3}
+.also ul{grid-column:4/-1;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 24px}
+.also li{padding:12px 0;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:16px;font-size:15px}
+.also li span{color:var(--mute);font-family:var(--mono);font-size:11px;letter-spacing:.06em;white-space:nowrap;padding-top:3px}
+@media (max-width:820px){.also .mono,.also ul{grid-column:1/-1}.also ul{grid-template-columns:1fr;margin-top:12px}}
+
+/* ---------- research ---------- */
+.research{background:var(--ink);color:#fff;border-top:0}
+.research .sec-no span:last-child{color:#8d8d96}
+.research .sec-no{color:#b48ce6}
+.paper-fig{grid-column:1 / span 7;position:relative}
+.paper-fig img{width:100%;aspect-ratio:1.618/1;object-fit:cover}
+.paper-fig figcaption{color:#8d8d96;margin-top:12px}
+.paper-body{grid-column:9 / -1}
+.award{display:inline-flex;align-items:center;gap:10px;border:1px solid #6a35a3;color:#d8c4f0;padding:8px 14px;margin-bottom:28px}
+.award i{width:8px;height:8px;background:#9b6bd6;display:block;transform:rotate(45deg)}
+.paper-body h3{font-weight:300;font-variation-settings:"wdth" 82;font-size:clamp(26px,2.8vw,36px);line-height:1.12;letter-spacing:-.02em;margin-bottom:24px}
+.paper-body p{color:#c4c4cc;font-size:15px}
+.paper-body p+p{margin-top:14px}
+.paper-body .mono{color:#8d8d96;margin-top:28px;display:block;line-height:1.8}
+.findings{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:72px;border-top:1px solid #2c2c31;padding-top:24px}
+.findings b{display:block;font-weight:400;font-size:var(--t-2);margin:8px 0 6px;letter-spacing:-.01em}
+.findings p{color:#9e9ea7;font-size:14px}
+.findings .mono{color:#b48ce6}
+@media (max-width:820px){.paper-fig,.paper-body{grid-column:1/-1}.paper-body{margin-top:40px}.findings{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.findings{grid-template-columns:1fr}}
+
+/* ---------- teaching ---------- */
+.teach{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--ink)}
+.teach article{padding:24px 24px 32px 0;position:relative}
+.teach article+article{padding-left:24px;border-left:1px solid var(--line)}
+.teach .mono{color:var(--violet)}
+.teach h4{font-weight:400;font-size:var(--t-3);font-variation-settings:"wdth" 84;letter-spacing:-.015em;line-height:1.15;margin:16px 0 8px}
+.teach .where{color:var(--mute);font-size:14px;margin-bottom:16px}
+.teach p{color:var(--ink-2);font-size:15px}
+.roles{grid-column:1/-1;margin-top:56px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.roles div{border-top:1px solid var(--line);padding-top:14px;font-size:15px}
+.roles .mono{display:block;color:var(--mute);margin-bottom:6px;font-size:10.5px}
+@media (max-width:820px){.teach,.roles{grid-template-columns:1fr}.teach article+article{padding-left:0;border-left:0;border-top:1px solid var(--line)}}
+
+/* ---------- expertise ---------- */
+.exp{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.exp-col{border-top:1px solid var(--ink);padding-top:20px}
+.exp-col svg{width:34px;height:34px;display:block;margin-bottom:20px}
+.exp-col h4{font-weight:500;font-size:var(--t-1);margin-bottom:4px}
+.exp-col .mono{color:var(--mute);font-size:10.5px}
+.exp-col ul{list-style:none;margin-top:20px}
+.exp-col li{padding:9px 0;border-bottom:1px solid var(--line);font-size:15px;display:flex;align-items:center;gap:10px;transition:padding .35s var(--ease),color .3s}
+.exp-col li::before{content:"";width:5px;height:5px;border:1px solid var(--ink-2);flex:none;transition:all .3s}
+.exp-col li:hover{padding-left:6px;color:var(--violet)}
+.exp-col li:hover::before{background:var(--violet);border-color:var(--violet)}
+.exp-col li.key::before{background:var(--violet);border-color:var(--violet)}
+@media (max-width:1000px){.exp{grid-template-columns:1fr 1fr;row-gap:48px}}
+@media (max-width:520px){.exp{grid-template-columns:1fr}}
+
+/* ---------- trajectory ---------- */
+.map{grid-column:1/-1;margin-bottom:72px}
+.map svg{width:100%;height:auto;display:block}
+.map text{font-family:var(--mono);font-size:19px;letter-spacing:.06em;fill:var(--ink)}
+.map .yr{fill:var(--mute);font-size:15px}
+.map .arc{fill:none;stroke:var(--violet);stroke-width:1.6;stroke-dasharray:var(--len);stroke-dashoffset:var(--len);transition:stroke-dashoffset 3.2s var(--ease)}
+.map.in .arc{stroke-dashoffset:0}
+.cities{display:none}
+@media (max-width:820px){
+  .map text{display:none}
+  .cities{display:grid;grid-template-columns:1fr 1fr;gap:0 24px;margin-top:16px}
+  .cities div{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+  .cities span{font-family:var(--mono);color:var(--mute);font-size:11px}
+}
+
+.gantt{grid-column:1/-1;position:relative}
+.g-scale{position:relative;height:28px;margin-left:var(--lab);border-bottom:1px solid var(--ink)}
+.g-scale span{position:absolute;transform:translateX(-50%);font-family:var(--mono);font-size:11px;color:var(--mute);top:0}
+.g-scale span::after{content:"";position:absolute;left:50%;top:18px;height:9px;width:1px;background:var(--ink)}
+.gantt{--lab:34%}
+.g-row{display:grid;grid-template-columns:var(--lab) 1fr;align-items:center;border-bottom:1px solid var(--line);min-height:52px;position:relative}
+.g-row .who{padding:10px 16px 10px 0;font-size:14.5px;line-height:1.35}
+.g-row .who small{display:block;color:var(--mute);font-size:12.5px}
+.g-track{position:relative;height:100%;min-height:52px;background-image:linear-gradient(to right,var(--line) 1px,transparent 1px);background-size:5% 100%}
+.g-bar{position:absolute;top:50%;height:10px;margin-top:-5px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform 1.4s var(--ease)}
+.g-bar.acad{background:transparent;border:1px solid var(--ink);background-image:repeating-linear-gradient(-45deg,var(--ink) 0 1px,transparent 1px 5px)}
+.g-bar.now{background:var(--violet)}
+.g-bar.now::after{content:"";position:absolute;right:-1px;top:-5px;width:1px;height:20px;background:var(--violet)}
+.gantt.in .g-bar{transform:scaleX(1)}
+.g-legend{display:flex;gap:28px;flex-wrap:wrap;margin-top:20px;color:var(--mute)}
+.g-legend span{display:flex;align-items:center;gap:8px}
+.g-legend i{width:22px;height:8px;display:block;background:var(--ink)}
+.g-legend i.a{background:transparent;border:1px solid var(--ink);background-image:repeating-linear-gradient(-45deg,var(--ink) 0 1px,transparent 1px 5px)}
+.g-legend i.n{background:var(--violet)}
+@media (max-width:820px){
+  .gantt{--lab:0%}
+  .g-scale{margin-left:0}
+  .g-scale span:nth-child(even){display:none}
+  .g-row{grid-template-columns:1fr;padding:10px 0}
+  .g-row .who{padding:0 0 8px}
+  .g-track{min-height:16px}
+}
+.edu{grid-column:1/-1;margin-top:72px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.edu div{border-top:1px solid var(--ink);padding-top:14px}
+.edu .mono{color:var(--violet);display:block;margin-bottom:6px;font-size:10.5px}
+.edu b{font-weight:500;display:block}
+.edu small{color:var(--mute);font-size:14px}
+@media (max-width:820px){.edu{grid-template-columns:1fr}}
+
+/* ---------- contact ---------- */
+.contact{padding:clamp(120px,16vw,220px) 0 clamp(64px,8vw,120px);border-top:1px solid var(--line)}
+.closing{grid-column:2 / span 10;font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(32px,5vw,68px);line-height:1.12;letter-spacing:-.015em;text-align:center}
+.closing .v{font-style:normal}
+.closing-by{grid-column:1/-1;text-align:center;color:var(--mute);margin-top:28px}
+.cta{grid-column:1/-1;display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:56px}
+.btn{display:inline-flex;align-items:center;gap:14px;padding:18px 28px;border:1px solid var(--ink);font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;position:relative;overflow:hidden;transition:color .4s}
+.btn::before{content:"";position:absolute;inset:0;background:var(--violet);transform:translateY(101%);transition:transform .5s var(--ease)}
+.btn span,.btn svg{position:relative}
+.btn:hover{color:#fff;border-color:var(--violet)}
+.btn:hover::before{transform:none}
+.btn.solid{background:var(--ink);color:#fff}
+@media (max-width:820px){.closing{grid-column:1/-1}}
+
+/* ---------- title block footer ---------- */
+.tb{border-top:1px solid var(--ink);position:relative;z-index:1;background:var(--paper)}
+.tb .grid{grid-template-columns:2fr 1fr 1fr 1fr 1fr;column-gap:0}
+.tb .cell{padding:16px 16px 18px;border-left:1px solid var(--line);font-size:13.5px}
+.tb .cell:first-child{border-left:0;padding-left:0}
+.tb .mono{display:block;color:var(--mute);font-size:10px;margin-bottom:4px}
+.tb .cell b{font-weight:500}
+@media (max-width:820px){.tb .grid{grid-template-columns:1fr 1fr}.tb .cell{border-left:0;border-top:1px solid var(--line);padding-left:0}.tb .cell:first-child{grid-column:1/-1;border-top:0}}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  [data-r],.rule,.g-bar,.approach .draw,.map .arc{transition:none!important;opacity:1!important;transform:none!important;stroke-dashoffset:0!important}
+}
+</style>
+</head>
+<body>
+
+<div class="guides" aria-hidden="true"><div class="wrap"><div class="grid">
+  <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+</div></div></div>
+
+<nav class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="mark"><i></i>Shirla Tse</a>
+    <ul class="mono">
+      <li class="opt"><a href="#approach">Approach</a></li>
+      <li><a href="#work">Work</a></li>
+      <li class="opt"><a href="#research">Research</a></li>
+      <li class="opt"><a href="#teaching">Teaching</a></li>
+      <li class="opt"><a href="#trajectory">Trajectory</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <canvas id="field" aria-hidden="true"></canvas>
+
+  <div class="wrap">
+    <div class="hero-kicker mono"><b></b>Architect · Researcher · Educator</div>
+    <div class="grid">
+      <h1 class="name"><span>Shirla</span><span>Sin-Ling Tse<i class="sq"></i></span></h1>
+      <p class="hero-lede">Architecture where <em>research shapes practice</em> and <em>practice tests research</em>. Airports, flagships and public installations, designed with computation from the first sketch.</p>
+      <div class="fig mono" aria-live="polite">
+        <span id="figNo">Fig. 01 / 03</span>
+        <strong id="figName">Hyperboloid lattice</strong>
+        <span id="figNote">72 straight members, one curved surface</span>
+        <div class="bar"><i class="on"></i><i></i><i></i></div>
+      </div>
+      <div class="hero-meta">
+        <div><span class="mono">Practice</span>Principal Partner, AND lab Singapore</div>
+        <div><span class="mono">Academia</span>Assistant Professor, The University of Hong Kong</div>
+        <div><span class="mono">Award</span>Best Design Computing Paper, DCC’26</div>
+        <div><span class="mono">Based</span>Singapore · Hong Kong · Taipei</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ ABOUT ============ -->
+<section class="sec" id="about">
+  <div class="wrap">
+    <div class="grid sec-head">
+      <div class="sec-no mono" data-r><span>A—01</span><span>Profile</span></div>
+      <h2 class="sec-title" data-r>Ten years of building, <em>and</em> the research to explain why.</h2>
+    </div>
+    <div class="grid">
+      <div class="about-portrait" data-r>
+        <div class="frame">
+          <img src="img-portrait.jpg" alt="Portrait of Shirla Sin-Ling Tse" width="400" height="400">
+          <i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i>
+        </div>
+        <div class="dim mono">1 : 1</div>
+      </div>
+      <div class="about-text">
+        <p class="big" data-r>Shirla is an architect who has worked across <b>London, Hong Kong, Shanghai, Beijing, Singapore and Taipei</b>, on projects for global clients and government bodies, from a 300,000&nbsp;m² airport terminal to a twelve-seat sushi counter.</p>
+        <p class="small" data-r>Her work brings built form, façade and structure together as one design problem, solved with BIM and generative algorithms. Alongside practice she teaches core design studios and supervises theses. Her research studies how airports reshape the cities around them.</p>
+        <div class="stats" data-r>
+          <div class="stat"><div class="n">10<sup>+</sup></div><span class="mono">Years in practice<br>KPF · Benoy · IDA · Aedas · AECOM</span></div>
+          <div class="stat"><div class="n">06</div><span class="mono">Cities worked in<br>across Europe &amp; Asia</span></div>
+          <div class="stat"><div class="n">03</div><span class="mono">Universities taught at<br>HKU · NTUST · SUTD</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APPROACH ============ -->
+<section class="sec" id="approach">
+  <div class="wrap">
+    <div class="grid sec-head">
+      <div class="sec-no mono" data-r><span>A—02</span><span>Approach</span></div>
+      <h2 class="sec-title" data-r>A hybrid practice. One question asks <em>why</em>, the other asks <em>how</em>.</h2>
+    </div>
+    <div class="grid">
+      <div class="approach" id="approachFig">
+        <!-- two circles, radius ratio 1 : 1, centres separated by r·φ⁻¹·2 ; lens = architectural intelligence -->
+        <svg viewBox="0 0 1200 520" role="img" aria-label="Diagram: research (why) and practice (how) overlap in architectural intelligence">
+          <defs>
+            <pattern id="hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+              <line x1="0" y1="0" x2="0" y2="7" stroke="#4b1d7a" stroke-width="1.2"/>
+            </pattern>
+            <clipPath id="cL"><circle cx="452" cy="260" r="200"/></clipPath>
+            <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9" fill="none" stroke="#0c0c0d" stroke-width="1.2"/></marker>
+          </defs>
+          <circle cx="748" cy="260" r="200" fill="url(#hatch)" clip-path="url(#cL)" opacity=".55"/>
+          <circle class="draw" style="--len:1257" cx="452" cy="260" r="200" fill="none" stroke="#0c0c0d" stroke-width="1.2"/>
+          <circle class="draw" style="--len:1257" cx="748" cy="260" r="200" fill="none" stroke="#0c0c0d" stroke-width="1.2"/>
+          <line x1="40" y1="260" x2="1160" y2="260" stroke="#cfcfd6" stroke-dasharray="3 6"/>
+          <line x1="600" y1="20" x2="600" y2="500" stroke="#cfcfd6" stroke-dasharray="3 6"/>
+          <circle cx="452" cy="260" r="3" fill="#0c0c0d"/><circle cx="748" cy="260" r="3" fill="#0c0c0d"/>
+
+          <text x="352" y="214" text-anchor="middle">RESEARCH</text>
+          <text class="big" x="352" y="270" text-anchor="middle">Why</text>
+          <text class="ser" x="352" y="304" text-anchor="middle" fill="#7a7a80">intent</text>
+
+          <text x="848" y="214" text-anchor="middle">PRACTICE</text>
+          <text class="big" x="848" y="270" text-anchor="middle">How</text>
+          <text class="ser" x="848" y="304" text-anchor="middle" fill="#7a7a80">method</text>
+
+          <rect x="526" y="245" width="148" height="30" fill="#fff"/>
+          <text x="600" y="265" text-anchor="middle" fill="#4b1d7a" style="font-size:11px">ARCH. INTELLIGENCE</text>
+
+          <path class="draw" style="--len:520" d="M452,48 Q600,-30 748,48" fill="none" stroke="#0c0c0d" marker-end="url(#ah)"/>
+          <path class="draw" style="--len:520" d="M748,472 Q600,550 452,472" fill="none" stroke="#0c0c0d" marker-end="url(#ah)"/>
+          <text class="ser" x="600" y="22" text-anchor="middle" style="font-size:19px">research shapes practice</text>
+          <text class="ser" x="600" y="514" text-anchor="middle" style="font-size:19px">practice tests research</text>
+
+          <text x="40" y="250" fill="#7a7a80" style="font-size:11px">ACADEMIC / THEORETICAL</text>
+          <text x="1160" y="250" text-anchor="end" fill="#7a7a80" style="font-size:11px">COMMERCIAL / TECHNICAL</text>
+        </svg>
+      </div>
+      <div class="approach-cols">
+        <div data-r><span class="mono v">01 — Ask</span><h4>Every project starts as a question</h4><p>How do you lay out a concourse for passenger flow and retail at once? How do you make metal read like washi paper? The design answers a question.</p></div>
+        <div data-r><span class="mono v">02 — Compute</span><h4>Geometry as a working system</h4><p>BIM, Rhino and Grasshopper workflows put structure, façade and performance into the same model, so form follows from logic, not styling.</p></div>
+        <div data-r><span class="mono v">03 — Test</span><h4>Built work feeds back into theory</h4><p>Live airports, flagship stores and exhibitions test the research. Teaching and papers take the lessons back into the studio.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section class="sec" id="work">
+  <div class="wrap">
+    <div class="grid sec-head">
+      <div class="sec-no mono" data-r><span>A—03</span><span>Selected work</span></div>
+      <h2 class="sec-title" data-r>From civic-scale terminals to a single paper wall.</h2>
+      <div class="filters" role="group" aria-label="Filter projects" data-r>
+        <button class="chip on" data-f="all">All<sup>6</sup></button>
+        <button class="chip" data-f="aviation">Aviation<sup>2</sup></button>
+        <button class="chip" data-f="retail">Retail &amp; hospitality<sup>2</sup></button>
+        <button class="chip" data-f="exhibition">Exhibition &amp; public<sup>2</sup></button>
+      </div>
+    </div>
+
+    <div id="works">
+      <article class="work grid" data-cat="retail">
+        <figure class="work-fig" data-r>
+          <div class="ph"><img src="img-voca.jpg" alt="VOCA Omakase: translucent paper-pulp coated aluminium partition behind a glass storefront" loading="lazy"></div>
+          <i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i>
+          <figcaption class="mono"><span>Beijing</span><span>Completed 2023</span></figcaption>
+        </figure>
+        <div class="work-body" data-r>
+          <div class="work-no mono"><b>01</b><span>Hospitality · Interior</span></div>
+          <h3>VOCA Japanese Omakase</h3>
+          <p class="q">Can industrial metal take on the translucency of handmade washi paper in a fire-rated space?</p>
+          <p class="d">Perforated aluminium panels were coated in raw paper pulp and prototyped over many rounds, testing light diffusion, touch and suspension, until the partition glowed like handmade paper. A curved black wall with a gold crack and suspended acrylic rods follow from the same material study.</p>
+          <dl class="spec"><dt>Practice</dt><dd>AND lab</dd><dt>Focus</dt><dd>Material research · prototyping</dd></dl>
+        </div>
+      </article>
+
+      <article class="work grid" data-cat="retail">
+        <figure class="work-fig" data-r>
+          <div class="ph"><img src="img-apple.jpg" alt="Apple Store Parkview Green: transparent store volume within an atrium" loading="lazy" style="object-position:50% 70%"></div>
+          <i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i>
+          <figcaption class="mono"><span>Beijing</span><span>Client — Apple</span></figcaption>
+        </figure>
+        <div class="work-body" data-r>
+          <div class="work-no mono"><b>02</b><span>Retail · Flagship</span></div>
+          <h3>Apple Store, Parkview Green</h3>
+          <p class="q">How can a store be its own building and still sit inside someone else’s?</p>
+          <p class="d">A building within a building. A transparent four-level volume reads as its own architecture while working structurally and environmentally with the host’s LEED Platinum ETFE envelope. A cantilevered stone spiral stair, refined through structural and material studies, sits at the centre of the sales floors.</p>
+          <dl class="spec"><dt>Practice</dt><dd>IDA Hong Kong</dd><dt>Scope</dt><dd>Approach, conceptual &amp; schematic</dd></dl>
+        </div>
+      </article>
+
+      <article class="work grid" data-cat="aviation">
+        <figure class="work-fig" data-r>
+          <div class="ph"><img src="img-delhi.jpg" alt="Aerial render of the Y-shaped concourse at Indira Gandhi International Airport" loading="lazy"></div>
+          <i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i>
+          <figcaption class="mono"><span>New Delhi</span><span>300,000 m²</span></figcaption>
+        </figure>
+        <div class="work-body" data-r>
+          <div class="work-no mono"><b>03</b><span>Aviation · Terminal</span></div>
+          <h3>Indira Gandhi International Airport</h3>
+          <p class="q">Can one concourse geometry serve passenger flow, retail, operations and future growth at the same time?</p>
+          <p class="d">The team studied I, wedge and Y layouts for the international and domestic terminal reconstruction. The Y won because its branches move passengers from check-in through a central retail node to contact and bus gates on two levels, with room left to expand.</p>
+          <dl class="spec"><dt>Practice</dt><dd>IDA Hong Kong</dd><dt>Client</dt><dd>Delhi International Airport Ltd.</dd></dl>
+        </div>
+      </article>
+
+      <article class="work grid" data-cat="aviation">
+        <figure class="work-fig" data-r>
+          <div class="ph"><img src="img-hyderabad.jpg" alt="Dusk render of the Rajiv Gandhi International Airport terminal expansion" loading="lazy"></div>
+          <i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i>
+          <figcaption class="mono"><span>Hyderabad</span><span>8 levels · 2 piers</span></figcaption>
+        </figure>
+        <div class="work-body" data-r>
+          <div class="work-no mono"><b>04</b><span>Aviation · Expansion</span></div>
+          <h3>Rajiv Gandhi International Airport</h3>
+          <p class="q">How do you add a new terminal to a live one and have it read as a single piece of architecture?</p>
+          <p class="d">The expansion doubles the capacity of India’s sixth-busiest airport without stopping operations. The roof was the one element free to set a new identity. It has to span, shade, carry load and guide passengers, and its geometry shows that identity and operations can be designed as one problem.</p>
+          <dl class="spec"><dt>Practice</dt><dd>Aedas Singapore</dd><dt>Scope</dt><dd>Conceptual, schematic &amp; tender</dd></dl>
+        </div>
+      </article>
+
+      <article class="work grid" data-cat="exhibition">
+        <figure class="work-fig" data-r>
+          <div class="ph"><img src="img-bubble.jpg" alt="Bubble Waltz installation in the Taipei Fine Arts Museum forecourt" loading="lazy"></div>
+          <i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i>
+          <figcaption class="mono"><span>Taipei</span><span>X-Site 2025</span></figcaption>
+        </figure>
+        <div class="work-body" data-r>
+          <div class="work-no mono"><b>05</b><span>Installation · Public</span></div>
+          <h3>Bubble Waltz, Taipei Fine Arts Museum</h3>
+          <p class="q">Can a temporary installation hold on to the fragility of childhood imagination?</p>
+          <p class="d">The museum forecourt becomes a field of “unbreakable bubbles”. Flowing lines, iridescent colour and rotating ribbons move like a waltz, and visitors walk inside, around and outside the imagined bubbles.</p>
+          <dl class="spec"><dt>Team</dt><dd>AND lab + NTUST</dd><dt>Programme</dt><dd>TFAM X-Site 2025</dd></dl>
+        </div>
+      </article>
+
+      <article class="work grid" data-cat="exhibition">
+        <figure class="work-fig" data-r>
+          <div class="ph"><img src="img-venice.jpg" alt="Axonometric drawing of the Taiwan Pavilion exhibition built from corrugated metal sheet" loading="lazy"></div>
+          <i class="crop tl"></i><i class="crop tr"></i><i class="crop bl"></i><i class="crop br"></i>
+          <figcaption class="mono"><span>Venice</span><span>Biennale 2025</span></figcaption>
+        </figure>
+        <div class="work-body" data-r>
+          <div class="work-no mono"><b>06</b><span>Exhibition · Pavilion</span></div>
+          <h3>Taiwan Pavilion, Venice Biennale</h3>
+          <p class="q">What does Taiwanese housing look like without the standard floor plans of the property market?</p>
+          <p class="d">The exhibition design uses 鐵皮, the corrugated metal sheet seen across Taiwan and usually linked with informal, unauthorised building. Built into flowing walls and roofs, it is shown as material with its own Taiwanese aesthetic and building potential.</p>
+          <dl class="spec"><dt>Team</dt><dd>AND lab + NTUST</dd><dt>Focus</dt><dd>Exhibition design · vernacular tectonics</dd></dl>
+        </div>
+      </article>
+    </div>
+
+    <div class="also grid" data-r>
+      <span class="mono">Earlier practice</span>
+      <ul>
+        <li>Smithfield Market Revitalisation<span>London · KPF</span></li>
+        <li>Mangkuluhur City Tower 2<span>Jakarta</span></li>
+        <li>WE City<span>Chengdu</span></li>
+        <li>Westlake Residential, Hotel &amp; Serviced Apartments<span>Hanoi</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESEARCH ============ -->
+<section class="sec research" id="research">
+  <div class="wrap">
+    <div class="grid sec-head">
+      <div class="sec-no mono" data-r><span>A—04</span><span>Research</span></div>
+      <h2 class="sec-title" data-r>Reading the city as a network of <em>patterns</em>.</h2>
+    </div>
+    <div class="grid">
+      <figure class="paper-fig" data-r>
+        <img src="img-pattern.jpg" alt="Space Syntax integration map of the Hong Kong–Shenzhen region with airports and activity nodes highlighted" loading="lazy">
+        <figcaption class="mono">Space Syntax integration · Hong Kong — Shenzhen</figcaption>
+      </figure>
+      <div class="paper-body" data-r>
+        <div class="award mono"><i></i>Best Design Computing Paper · DCC’26</div>
+        <h3>Reconstructing <em style="font-family:var(--serif)">A Pattern Language</em>: Emergent Asian Cities and Airports Transformation</h3>
+        <p>The paper combines Christopher Alexander’s <em>A Pattern Language</em> with Space Syntax analysis to see how airports change accessibility, connectivity and public space in fast-growing Asian cities, compared with cities in Europe and the US.</p>
+        <p>The result is a topological diagnostic tool. It shifts airport planning from maximising logistics capacity towards specific spatial interventions.</p>
+        <span class="mono">With Victor Yu Chieh Lin &amp; Shuo-Te Chien<br>Design Computing and Cognition Conference, 2026</span>
+      </div>
+      <div class="findings">
+        <div data-r><span class="mono">Bangkok</span><b>Logistical island</b><p>An integration gap cuts the airport off from the city’s street network.</p></div>
+        <div data-r><span class="mono">London</span><b>Integration plateau</b><p>Accessibility is spread evenly across the network.</p></div>
+        <div data-r><span class="mono">HK — Shenzhen</span><b>Functional symbiosis</b><p>High-integration corridors are engineered to link the airport and the cities.</p></div>
+        <div data-r><span class="mono">NY — NJ</span><b>Regional continuity</b><p>The airport and the region have grown together over time.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEACHING ============ -->
+<section class="sec" id="teaching">
+  <div class="wrap">
+    <div class="grid sec-head">
+      <div class="sec-no mono" data-r><span>A—05</span><span>Teaching</span></div>
+      <h2 class="sec-title" data-r>Studios that question <em>what an airport is for</em>.</h2>
+    </div>
+    <div class="grid">
+      <div class="teach" data-r>
+        <article>
+          <span class="mono">Studio</span>
+          <h4>RE-Defining Airports</h4>
+          <div class="where">SUTD · Sustainable Design Studio</div>
+          <p>Students study the airports of Asia, from the closed Kai Tak to Hanoi, Phnom Penh and Yangon, and propose new uses for them as infrastructure and public space.</p>
+        </article>
+        <article>
+          <span class="mono">Collaboration</span>
+          <h4>Horizon 2050</h4>
+          <div class="where">SUTD × Foster + Partners</div>
+          <p>A study of a century of aviation technology, mapping aircraft development and passenger growth to imagine the airport of 2050.</p>
+        </article>
+        <article>
+          <span class="mono">Thesis supervision</span>
+          <h4>Post-Capitalism Architecture</h4>
+          <div class="where">NTUST · Taipei</div>
+          <p>An urban food hub on the roof of Songshan Airport. Space given over to retail becomes space for growing food, community and self-sufficiency.</p>
+        </article>
+      </div>
+      <div class="roles" data-r>
+        <div><span class="mono">2025 — now</span>Part-time Assistant Professor<br>The University of Hong Kong</div>
+        <div><span class="mono">2023 — 2026</span>Assistant Professor<br>National Taiwan University of Science &amp; Technology</div>
+        <div><span class="mono">2018 — 2021</span>Adjunct Lecturer · Senior Research Associate<br>Singapore University of Technology &amp; Design</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERTISE ============ -->
+<section class="sec" id="expertise">
+  <div class="wrap">
+    <div class="grid sec-head">
+      <div class="sec-no mono" data-r><span>A—06</span><span>Expertise</span></div>
+      <h2 class="sec-title" data-r>Four disciplines, <em>one</em> integrated design.</h2>
+    </div>
+    <div class="grid">
+      <div class="exp">
+        <div class="exp-col" data-r>
+          <svg viewBox="0 0 34 34" fill="none" stroke="#0c0c0d"><rect x="1.5" y="1.5" width="31" height="31"/><rect x="1.5" y="1.5" width="19.2" height="31" fill="#4b1d7a" stroke="none" opacity=".9"/></svg>
+          <h4>Typologies</h4><span class="mono">What she builds</span>
+          <ul><li class="key">Aviation &amp; terminals</li><li>Retail &amp; flagship stores</li><li>Mixed-use &amp; towers</li><li>Hospitality interiors</li><li>Exhibitions &amp; installations</li></ul>
+        </div>
+        <div class="exp-col" data-r>
+          <svg viewBox="0 0 34 34" fill="none" stroke="#0c0c0d"><circle cx="17" cy="17" r="15.5"/><circle cx="17" cy="17" r="9.6" fill="#4b1d7a" stroke="none"/></svg>
+          <h4>Computation</h4><span class="mono">How she designs</span>
+          <ul><li class="key">Generative algorithms</li><li>BIM</li><li>Rhino 3D</li><li>Grasshopper</li><li>Space Syntax analysis</li></ul>
+        </div>
+        <div class="exp-col" data-r>
+          <svg viewBox="0 0 34 34" fill="none" stroke="#0c0c0d"><path d="M17 2 L32 32 L2 32 Z"/><path d="M17 13.5 L26.3 32 L7.7 32 Z" fill="#4b1d7a" stroke="none"/></svg>
+          <h4>Systems</h4><span class="mono">What she integrates</span>
+          <ul><li class="key">Façade systems</li><li>Structural systems</li><li>Built form</li><li>Material prototyping</li><li>Code &amp; fire strategy</li></ul>
+        </div>
+        <div class="exp-col" data-r>
+          <svg viewBox="0 0 34 34" fill="none" stroke="#0c0c0d"><path d="M2 32 L2 2 L32 2"/><path d="M2 32 A30 30 0 0 1 32 2" /><path d="M2 32 L20.5 13.5" stroke="#4b1d7a" stroke-width="3"/></svg>
+          <h4>Academia</h4><span class="mono">How she shares it</span>
+          <ul><li class="key">Core design studios</li><li>Thesis supervision</li><li>Urban &amp; airport research</li><li>Industry collaboration</li><li>Peer-reviewed publication</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRAJECTORY ============ -->
+<section class="sec" id="trajectory">
+  <div class="wrap">
+    <div class="grid sec-head">
+      <div class="sec-no mono" data-r><span>A—07</span><span>Trajectory</span></div>
+      <h2 class="sec-title" data-r>Six cities, <em>one</em> line of flight.</h2>
+    </div>
+    <div class="grid">
+      <div class="map" id="map">
+        <!-- equirectangular: lon −15…140, lat −5…60 · 10 units per degree -->
+        <svg viewBox="0 0 1550 650" role="img" aria-label="Map of the six cities: London, Hong Kong, Shanghai, Beijing, Singapore, Taipei">
+          <g stroke="#e6e6ea" stroke-width="1" id="grat"></g>
+          <path id="route" class="arc" d=""/>
+          <g id="pts"></g>
+        </svg>
+        <div class="cities">
+          <div>London<span>2007</span></div><div>Hong Kong<span>2012</span></div>
+          <div>Shanghai<span>2012</span></div><div>Beijing<span>2015</span></div>
+          <div>Singapore<span>2017</span></div><div>Taipei<span>2023</span></div>
+        </div>
+      </div>
+
+      <div class="gantt" id="gantt">
+        <div class="g-scale" id="gScale"></div>
+        <div id="gRows"></div>
+        <div class="g-legend mono">
+          <span><i></i>Practice</span><span><i class="a"></i>Academia</span><span><i class="n"></i>Current</span>
+        </div>
+      </div>
+
+      <div class="edu">
+        <div data-r><span class="mono">Education</span><b>Architectural Association</b><small>Intermediate, Unit 8 · London</small></div>
+        <div data-r><span class="mono">Education</span><b>The University of Glasgow</b><small>Master’s Degree, Architecture</small></div>
+        <div data-r><span class="mono">Education</span><b>The University of Hong Kong</b><small>Bachelor’s Degree, Architecture</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="grid">
+      <p class="closing" data-r>“How do we make architecture intellectually rigorous without separating it from <span class="v">reality</span>?”</p>
+      <p class="closing-by mono" data-r>— The question behind the work</p>
+      <div class="cta" data-r>
+        <a class="btn solid" href="https://www.linkedin.com/in/shirla-sin-ling-tse-2a3b65b0/" target="_blank" rel="noopener"><span>Connect on LinkedIn</span><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor"><path d="M3 11 L11 3 M5 3 H11 V9"/></svg></a>
+        <a class="btn" href="https://www.researchgate.net/profile/Shirla-Tse-2" target="_blank" rel="noopener"><span>Research profile</span><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor"><path d="M3 11 L11 3 M5 3 H11 V9"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="tb">
+  <div class="wrap">
+    <div class="grid">
+      <div class="cell"><span class="mono">Architect</span><b>Shirla Sin-Ling Tse</b></div>
+      <div class="cell"><span class="mono">Practice</span>AND lab Singapore</div>
+      <div class="cell"><span class="mono">Sheet</span>A—00 / 07</div>
+      <div class="cell"><span class="mono">Scale</span>1 : 1</div>
+      <div class="cell"><span class="mono">Rev.</span><span id="yr">2026</span></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* =========================================================
+     Hero particle field — points assemble into ruled surfaces
+     ========================================================= */
+  const cv = document.getElementById('field');
+  const ctx = cv.getContext('2d');
+  const M = 72, K = 22, N = M * K;
+  const TAU = Math.PI * 2;
+
+  const shapes = [
+    { name:'Hyperboloid lattice', note:'72 straight members, one curved surface', closed:false, build(i, t){
+        const a = i / M * TAU, tw = (i % 2 ? 1 : -1) * TAU * 0.36;
+        const r = 0.95, h = 1.25;
+        const x0 = r*Math.cos(a), z0 = r*Math.sin(a), x1 = r*Math.cos(a+tw), z1 = r*Math.sin(a+tw);
+        return [x0 + (x1-x0)*t, -h + 2*h*t, z0 + (z1-z0)*t];
+    }},
+    { name:'Hyperbolic paraboloid', note:'A saddle roof drawn with two sets of straight lines', closed:false, build(i, t){
+        const half = M/2; let x, z;
+        if (i < half){ x = -1 + 2*(i/(half-1)); z = -1 + 2*t; }
+        else { z = -1 + 2*((i-half)/(half-1)); x = -1 + 2*t; }
+        const s = 1.0, y = 0.85 * x * z;
+        const c = Math.SQRT1_2;
+        return [(x - z)*c*s, y*s*0.9, (x + z)*c*s];
+    }},
+    { name:'Twisting tower', note:'72 floor plates rotating a quarter turn', closed:true, build(i, t){
+        const h = -1.3 + 2.6 * i/(M-1);
+        const rot = (i/(M-1)) * Math.PI/2;
+        const p = t * 4, side = Math.floor(p) % 4, f = p - Math.floor(p), s = 0.52;
+        let x, z;
+        if (side===0){ x = -s + 2*s*f; z = -s; }
+        else if (side===1){ x = s; z = -s + 2*s*f; }
+        else if (side===2){ x = s - 2*s*f; z = s; }
+        else { x = -s; z = s - 2*s*f; }
+        const cr = Math.cos(rot), sr = Math.sin(rot);
+        return [x*cr - z*sr, h, x*sr + z*cr];
+    }}
+  ];
+
+  function make(k){
+    const S = shapes[k], a = new Float32Array(N*3);
+    for (let i=0;i<M;i++) for (let j=0;j<K;j++){
+      const t = S.closed ? j/K : j/(K-1);
+      const p = S.build(i, t), n = (i*K + j)*3;
+      a[n]=p[0]; a[n+1]=p[1]; a[n+2]=p[2];
+    }
+    return a;
+  }
+  const targets = shapes.map((_,k)=>make(k));
+
+  // start as a loose cloud
+  const cur = new Float32Array(N*3), from = new Float32Array(N*3);
+  for (let n=0;n<N;n++){
+    const u = Math.random()*TAU, v = Math.acos(2*Math.random()-1), r = 1.1 + Math.random()*1.2;
+    cur[n*3]=r*Math.sin(v)*Math.cos(u); cur[n*3+1]=r*Math.cos(v); cur[n*3+2]=r*Math.sin(v)*Math.sin(u);
+  }
+  const delay = new Float32Array(N).map(()=>Math.random()*0.35);
+  const ox = new Float32Array(N), oy = new Float32Array(N), vx = new Float32Array(N), vy = new Float32Array(N);
+  const sx = new Float32Array(N), sy = new Float32Array(N), sd = new Float32Array(N);
+  const accent = new Uint8Array(N); for (let i=0;i<M;i++) if (i % 9 === 0) for (let j=0;j<K;j++) accent[i*K+j]=1;
+
+  let W=0,H=0,dpr=1, cx=0, cy=0, sc=1;
+  function size(){
+    dpr = Math.min(devicePixelRatio||1, 2);
+    const r = cv.getBoundingClientRect(); W=r.width; H=r.height;
+    cv.width = W*dpr; cv.height = H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    if (W < 820){ cx = W*0.5; cy = Math.min(H*0.26, 240); sc = Math.min(W*0.25, H*0.11); }
+    else { cx = W*0.7; cy = H*0.42; sc = Math.min(W*0.15, H*0.2); }
+  }
+  size(); addEventListener('resize', size);
+
+  let shapeIx = 0, morphT = 0, morphing = true, fromCloud = true, hold = 0;
+  from.set(cur);
+  const MORPH = 2.6, HOLD = 6.5;
+  const ease = t => t<.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
+
+  const figNo = document.getElementById('figNo'), figName = document.getElementById('figName'), figNote = document.getElementById('figNote');
+  const bars = document.querySelectorAll('.fig .bar i');
+  function label(){
+    const s = shapes[shapeIx];
+    figNo.textContent = `Fig. 0${shapeIx+1} / 0${shapes.length}`;
+    figName.textContent = s.name; figNote.textContent = s.note;
+    bars.forEach((b,i)=>b.classList.toggle('on', i===shapeIx));
+  }
+
+  let mx = -9999, my = -9999, tiltT = 0.34, tilt = 0.34;
+  const hero = document.querySelector('.hero');
+  hero.addEventListener('pointermove', e => { const r = cv.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; tiltT = 0.24 + (my/H)*0.22; });
+  hero.addEventListener('pointerleave', () => { mx = my = -9999; tiltT = 0.34; });
+
+  let rot = 0.6, last = performance.now(), visible = true;
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible){ last = performance.now(); requestAnimationFrame(frame);} }).observe(hero);
+
+  function step(dt){
+    if (morphing){
+      morphT += dt / MORPH;
+      const T = targets[shapeIx];
+      for (let n=0;n<N;n++){
+        let p = (morphT - delay[n]) / (1 - 0.35); p = p<0?0:p>1?1:p; const e = ease(p);
+        const k=n*3;
+        cur[k]   = from[k]   + (T[k]  -from[k])  *e;
+        cur[k+1] = from[k+1] + (T[k+1]-from[k+1])*e;
+        cur[k+2] = from[k+2] + (T[k+2]-from[k+2])*e;
+      }
+      if (morphT >= 1){ morphing=false; fromCloud=false; hold=0; cur.set(T); }
+    } else {
+      hold += dt;
+      if (hold > HOLD){ from.set(cur); shapeIx = (shapeIx+1) % shapes.length; morphT=0; morphing=true; label(); }
+    }
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const cr = Math.cos(rot), sr = Math.sin(rot), ct = Math.cos(tilt), st = Math.sin(tilt);
+    const D = 4.2, R = 110;
+    for (let n=0;n<N;n++){
+      const k=n*3; let x=cur[k], y=cur[k+1], z=cur[k+2];
+      const x1 = x*cr - z*sr, z1 = x*sr + z*cr;
+      const y2 = y*ct - z1*st, z2 = y*st + z1*ct;
+      const f = D/(D+z2);
+      let px = cx + x1*sc*f, py = cy - y2*sc*f;
+      // pointer repulsion with spring return
+      const dx = px+ox[n]-mx, dy = py+oy[n]-my, d2 = dx*dx+dy*dy;
+      if (d2 < R*R && d2 > 0.01){ const d = Math.sqrt(d2), push = (1-d/R)*2.2; vx[n]+=dx/d*push; vy[n]+=dy/d*push; }
+      vx[n] += -ox[n]*0.05; vy[n] += -oy[n]*0.05; vx[n]*=0.84; vy[n]*=0.84; ox[n]+=vx[n]; oy[n]+=vy[n];
+      sx[n]=px+ox[n]; sy[n]=py+oy[n]; sd[n]=z2;
+    }
+    // members (lines) — fade out while morphing
+    let la;
+    if (!morphing) la = 1; else { const g = Math.min(1, morphT); la = fromCloud ? Math.pow(g,4) : Math.pow(Math.abs(2*g-1),2); }
+    if (la > 0.01){
+      const closed = shapes[shapeIx].closed && !morphing;
+      ctx.lineWidth = 0.7;
+      ctx.strokeStyle = `rgba(12,12,13,${0.13*la})`; ctx.beginPath();
+      for (let i=0;i<M;i++){ if (i%9===0) continue; const b=i*K; ctx.moveTo(sx[b],sy[b]); for (let j=1;j<K;j++) ctx.lineTo(sx[b+j],sy[b+j]); if (closed) ctx.lineTo(sx[b],sy[b]); }
+      ctx.stroke();
+      ctx.lineWidth = 1.1;
+      ctx.strokeStyle = `rgba(75,29,122,${0.55*la})`; ctx.beginPath();
+      for (let i=0;i<M;i+=9){ const b=i*K; ctx.moveTo(sx[b],sy[b]); for (let j=1;j<K;j++) ctx.lineTo(sx[b+j],sy[b+j]); if (closed) ctx.lineTo(sx[b],sy[b]); }
+      ctx.stroke();
+    }
+    // nodes
+    for (let n=0;n<N;n++){
+      const depth = Math.max(0, Math.min(1, (sd[n]+1.6)/3.2));
+      const s = (accent[n] ? 1.9 : 1.4) * (1.15 - depth*0.4);
+      ctx.fillStyle = accent[n] ? `rgba(75,29,122,${0.95 - depth*0.45})` : `rgba(12,12,13,${0.78 - depth*0.55})`;
+      ctx.fillRect(sx[n]-s/2, sy[n]-s/2, s, s);
+    }
+  }
+
+  function frame(now){
+    if (!visible || reduce || still !== null) return;
+    const dt = Math.min(0.1, (now-last)/1000); last = now;
+    if (!document.hidden){ step(dt); rot += dt*0.16; tilt += (tiltT - tilt)*0.04; draw(); }
+    requestAnimationFrame(frame);
+  }
+  // ?still=0|1|2 renders a settled figure (reduced motion uses the first)
+  const still = new URLSearchParams(location.search).get('still');
+  if (reduce || still !== null){
+    shapeIx = Math.min(shapes.length-1, +still || 0); label();
+    cur.set(targets[shapeIx]); morphing=false; fromCloud=false; draw();
+    addEventListener('resize', () => { size(); draw(); });
+  }
+  else requestAnimationFrame(frame);
+
+  /* ---------- nav state ---------- */
+  const nav = document.getElementById('nav');
+  const links = [...document.querySelectorAll('.nav ul a')];
+  addEventListener('scroll', () => nav.classList.toggle('solid', scrollY > innerHeight*0.6), {passive:true});
+  const secIO = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) links.forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#'+e.target.id));
+  }), {rootMargin:'-45% 0px -50% 0px'});
+  document.querySelectorAll('main section[id]').forEach(s => secIO.observe(s));
+
+  /* ---------- reveal ---------- */
+  const rIO = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); rIO.unobserve(e.target);} }), {threshold:.15});
+  document.querySelectorAll('[data-r], #approachFig, #map, #gantt').forEach(el => rIO.observe(el));
+  // stagger siblings
+  document.querySelectorAll('.approach-cols, .findings, .exp, .edu').forEach(g => [...g.children].forEach((c,i)=>c.style.transitionDelay = (i*110)+'ms'));
+
+  // on touch screens, colour the project image once it is in view
+  if (matchMedia('(hover: none)').matches){
+    const cIO = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('colour', e.isIntersecting)), {rootMargin:'-35% 0px -35% 0px'});
+    document.querySelectorAll('.work').forEach(w => cIO.observe(w));
+  }
+
+  /* ---------- work filters ---------- */
+  const chips = document.querySelectorAll('.chip');
+  chips.forEach(c => c.addEventListener('click', () => {
+    chips.forEach(x => x.classList.toggle('on', x===c));
+    const f = c.dataset.f;
+    document.querySelectorAll('.work').forEach(w => {
+      const show = f==='all' || w.dataset.cat===f;
+      w.classList.toggle('hide', !show);
+      if (show) w.querySelectorAll('[data-r]').forEach(el => el.classList.add('in'));
+    });
+  }));
+
+  /* ---------- map ---------- */
+  const P = (lon, lat) => [(lon+15)*10, (60-lat)*10];
+  const grat = document.getElementById('grat'); let g='';
+  for (let lon=-15; lon<=140; lon+=15){ const x=(lon+15)*10; g+=`<line x1="${x}" y1="0" x2="${x}" y2="650"/>`; }
+  for (let lat=60; lat>=-5; lat-=15){ const y=(60-lat)*10; g+=`<line x1="0" y1="${y}" x2="1550" y2="${y}"/>`; }
+  g += `<line x1="0" y1="600" x2="1550" y2="600" stroke="#cfcfd6" stroke-dasharray="4 6"/>`;
+  grat.innerHTML = g;
+  const cities = [
+    ['London', -0.13, 51.5, '2007', 'r'],
+    ['Hong Kong', 114.17, 22.3, '2012', 'l'],
+    ['Shanghai', 121.47, 31.23, '2012', 'r'],
+    ['Beijing', 116.4, 39.9, '2015', 'l'],
+    ['Singapore', 103.82, 1.35, '2017', 'l'],
+    ['Taipei', 121.56, 25.03, '2023', 'r'],
+  ];
+  let d=''; const pts = cities.map(c=>P(c[1],c[2]));
+  pts.forEach((p,i)=>{
+    if (!i){ d+=`M${p[0]},${p[1]}`; return; }
+    // bulge each leg perpendicular to its chord, always to the same side
+    const q = pts[i-1], dx=p[0]-q[0], dy=p[1]-q[1], dist=Math.hypot(dx,dy);
+    const k = (i===1 ? 0.3 : 0.22) * (dx < 0 ? -1 : 1);
+    d+=` Q${(q[0]+p[0])/2 + dy/dist*dist*k},${(q[1]+p[1])/2 - dx/dist*dist*k} ${p[0]},${p[1]}`;
+  });
+  const route = document.getElementById('route'); route.setAttribute('d', d);
+  route.style.setProperty('--len', Math.ceil(route.getTotalLength()));
+  document.getElementById('pts').innerHTML = cities.map((c,i)=>{
+    const [x,y]=pts[i], r=c[4]==='r', tx = r ? x+18 : x-18, a = r?'start':'end';
+    return `<rect x="${x-5}" y="${y-5}" width="10" height="10" fill="${i===cities.length-1?'#4b1d7a':'#0c0c0d'}"/>
+            <text x="${tx}" y="${y+2}" text-anchor="${a}">${c[0].toUpperCase()}</text>
+            <text class="yr" x="${tx}" y="${y+22}" text-anchor="${a}">${c[3]}</text>`;
+  }).join('') + `<text class="yr" x="8" y="592">EQUATOR +5°</text>`;
+
+  /* ---------- gantt ---------- */
+  const Y0 = 2007, Y1 = 2027, span = Y1 - Y0;
+  const roles = [
+    ['KPF','Architectural Assistant · London',2007,2009.9,'p'],
+    ['Benoy','Architectural Designer · Hong Kong + Shanghai',2012,2015,'p'],
+    ['Bareuss','Co-Founder · Hong Kong',2015.1,2017.45,'p'],
+    ['Integrated Design Associates','Design Architect · Hong Kong',2015.45,2017.4,'p'],
+    ['Aedas','Senior Architectural Designer · Singapore',2017.45,2018.7,'p'],
+    ['AECOM','Senior Architect · Singapore',2018.75,2019.08,'p'],
+    ['SUTD','Adjunct Lecturer · Senior Research Associate',2018.7,2021.45,'a'],
+    ['AND lab Singapore','Principal Partner',2021,2026.83,'n'],
+    ['NTUST','Assistant Professor · Taipei',2023.6,2026.55,'a'],
+    ['The University of Hong Kong','Part-time Assistant Professor',2025.35,2026.83,'an'],
+  ];
+  const pct = y => ((y - Y0)/span*100).toFixed(3)+'%';
+  let sHtml=''; for (let y=Y0; y<=Y1; y+=2) sHtml += `<span style="left:${pct(y)}">${y}</span>`;
+  document.getElementById('gScale').innerHTML = sHtml;
+  document.getElementById('gRows').innerHTML = roles.map((r,i)=>{
+    const cls = r[4]==='a' ? 'acad' : r[4]==='n' ? 'now' : r[4]==='an' ? 'acad now' : '';
+    return `<div class="g-row"><div class="who">${r[0]}<small>${r[1]}</small></div>
+      <div class="g-track"><i class="g-bar ${cls}" style="left:${pct(r[2])};width:${((r[3]-r[2])/span*100).toFixed(3)}%;transition-delay:${i*80}ms"></i></div></div>`;
+  }).join('');
+})();
+</script>
+</body>
+</html>
